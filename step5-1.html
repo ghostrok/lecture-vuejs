@@ -1,0 +1,124 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+ <!-- Begin of Line-->
+<div id="app1">
+    <h1 v-once>{{ title }}</h1>
+    <h1 ref="heading">{{ title }}</h1>
+    <h1>{{ lowercaseTitle }}</h1>
+    <p v-if="showParagraph">This is not Always shown by Everyone</p>
+    <button @click="show" ref="myButton">Show Paragraph</button>
+    <hello></hello>
+    <hello></hello>
+</div>
+<!-- End of Line-->
+
+<div id="app2">
+    <h1>{{ title }}</h1>
+    <button @click="changedByOther">change vw1 Title</button>
+</div>
+
+<div id="app3">
+    <h1></h1>
+</div>
+
+<div class="hello"></div>
+<div class="hello"></div>
+
+<script>
+
+var data = {
+    title: 'The VueJS Instance', 
+    showParagraph: false, 
+    
+};
+
+
+// Reusable Template 
+Vue.component('hello', {
+
+    template: '<h1>Hello</h1>'
+});
+
+
+var vw1 = new Vue({
+    //el : "#app1", 
+
+    data: data ,
+
+    methods: {
+        show: function() {
+            this.showParagraph = true;
+            this.updateTitle("The VueJS Instance (Updated)");
+            console.log(this.$refs)
+        }, 
+        updateTitle: function(value) {
+            this.title = value
+        }
+
+    },
+    computed: {
+        lowercaseTitle: function() {
+            return this.title.toLowerCase();
+        }
+    }, 
+    watch: {
+        title: function(value) {
+            alert('Title changed, new value TO ' + value );
+        }
+    }
+});
+
+setTimeout(function() {
+    //vw1.title = "Change Title by Timer";
+    //vw1.show();
+
+}, 5000);
+
+
+
+
+// RUN POJO Examples 
+
+vw1.$mount("#app1");
+
+
+//vw1.newProp = "new!" ;
+//console.log(vw1);
+//console.log(vw1.$data.title);
+console.log(data === vw1.$data);
+vw1.$refs.heading.innerText = "Somethin g Else";
+
+
+//alert(vw1.$refs.heading.innerHTML);
+
+
+ 
+var vw2  = new Vue({
+    el: "#app2", 
+    data: {
+        title : "second Title",
+    }, 
+    methods: {
+        changedByOther: function() {
+            vw1.title = "Changed";
+        }
+    }
+
+});
+
+
+var vw3 = new Vue({
+    template: '<h1>Hello! Template</h1>'
+});
+vw3.$mount("#app3");
+//alert(vw3.$el.innerHTML);
+
+
+
+</script>
+</body>
+</html>

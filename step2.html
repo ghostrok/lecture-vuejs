@@ -1,0 +1,60 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+  <input type="text" v-model="name2">
+  <input type="text" v-model="name">
+  <p>{{ name2 }}</p>
+  <p>{{ name }}</p>
+</div>
+
+
+
+<script>
+    Vue.config.devtools = true;
+
+new Vue({
+	el : "#app", 
+  data: {
+  	name : "Bryce",
+  	name2 : "",
+  },
+  methods: {
+  
+  }
+});
+
+</script>
+
+
+<!-- 
+    v-once
+    v-bind:href="" 
+    v-on:input=""
+    v-on:mouseover=""
+    v-on:mousemove=""
+
+
+    methods: {
+
+        updateLocation(event) {
+
+        }
+
+        event.clientX
+        event.clientY
+
+        dummy:function(event) {
+            event.stopProgation();
+        }
+
+    }
+
+-->
+
+</body>
+</html>

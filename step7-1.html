@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+ <!-- Begin of Line-->
+<div id="app1">
+<!-- End of Line-->
+<hello></hello>
+<hello></hello>
+
+</div>
+
+<hr>
+
+<div id="app2">
+<!-- End of Line-->
+<hello></hello>
+<hello></hello>
+
+</div>
+<!-- Vue Script Area -->
+<script>
+// Reusable Template 
+
+
+Vue.component('hello', {
+    data: function() {
+        return {
+            status: 'Critical'
+        }
+    },
+    template: '<h2>Server Status : {{ status }} </h2>'
+});
+
+
+new Vue({
+    el: "#app1",
+    
+});
+
+new Vue({
+    el: "#app2",
+});
+
+</script>
+<!-- Vue Script Area -->
+
+
+</body>
+</html>

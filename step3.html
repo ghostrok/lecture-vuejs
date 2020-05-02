@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- Begin of Line-->
+<div id="app">
+
+    <button @click="count++">Increase</button>
+    <button v-on:click="count--">Decrease</button>
+    <button v-on:click="scount++">Increase scount</button>
+
+    <p>Count : {{ count }}</p>
+    <p>Result : {{ result() }} | {{ output }}</p>
+    
+
+</div>
+
+<script>
+new Vue({
+    el : "#app", 
+    data: {
+  	    count : 0, 
+  	    scount : 0,
+          //result : this.count > 5 ? 'Greater than 5' : 'Smaller than 5',
+        //result : ''
+    },
+
+    computed: {
+        output: function() {
+            console.log("computed");
+            return this.count > 5 ? 'Greater than 5' : 'Smaller than 5'
+        } 
+    },
+
+    watch: {
+
+        counter: function(value) {
+            settimeout(function() {
+                vm.counter = 0;
+
+            }, 2000)
+        }
+    },
+
+    methods: {
+        result() {
+            console.log("methods");
+            return this.count > 5 ? 'Greater than 5' : 'Smaller than 5'
+        }
+
+    }, 
+});
+
+</script>
+
+<!-- 
+    el : DOM
+    data : Store Data to be used 
+    methods : Methods of the Vue Instance
+    computed : dependent Properties
+    watch : Execute code upon data changes 
+-->
+
+
+</body>
+</html>

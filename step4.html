@@ -1,0 +1,102 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <style>
+        .demo {
+            width: 180px;
+            height: 100px;
+            background-color: grey;
+            display: inline-block;
+            margin: 10px;
+    
+        }
+    
+        .green {
+            background-color : green
+        }
+        .red {
+            background-color : red
+        }
+        .blue {
+            background-color : blue
+        }
+        .grey {
+            background-color : grey
+        }
+    </style>    
+</head>
+
+<body>
+
+<!-- Begin of Line-->
+<div id="app">
+
+<!--
+    <div class="demo"
+    @click="attachRed = !attachRed"
+        :class="{red: attachRed}"></div>
+    <div class="demo" :class="{green: attachRed}"></div>
+    <div class="demo" :class="{blue: attachRed}"></div>
+-->
+
+
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <div class="demo" :class="color"></div>
+    <div class="demo" :style="{backgroundColor : color}"></div>
+
+    <div class="demo" :style="myStyle"></div>
+
+
+    <hr>
+
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+
+</div>
+
+<script>
+new Vue({
+    el : "#app", 
+
+    data: {
+          attachRed : false,
+          color: 'grey',
+          width: 10
+    },
+    computed: {
+        divClasses: function() {
+            return {
+                red : this.attachRed,
+                blue : this.attachRed,
+                green : this.attachRed,
+            }
+        }, 
+        myStyle: function() {
+            return {
+                width: this.width,
+                backgroundColor : this.color
+            }
+        }
+
+
+
+    }
+
+
+});
+
+</script>
+
+<!-- 
+    el : DOM
+    data : Store Data to be used 
+    methods : Methods of the Vue Instance
+    computed : dependent Properties ( cached properties)
+    watch : Execute code upon data changes 
+-->
+
+
+</body>
+</html>

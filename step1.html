@@ -1,0 +1,99 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+  <input type="text" v-on:input="changeTitle">
+  <p v-once>{{ title }}</p>
+  
+  
+  <!-- link bind -->
+  <p><a v-bind:href="link">Google!</a></p>
+  
+    <p v-on:click="increse(2, $event)"> count : {{ count }} </p>
+
+  <p v-on:mouseover="move">Location : {{ x }} // {{ y }}
+        <span v-on:mouseover="stop">SAFE AREA....</span>
+        <span v-on:mouseover.stop="">SAFE AREA2222....</span>
+    <input type="text" v-on:keyup.enter.space="alertMe">
+  </p>
+
+  <p>
+        <textarea cols="10" rows="3"></textarea>
+  </p>
+  <p>{{ sayHello() }}</p>
+</div>
+
+
+
+<script>
+    Vue.config.devtools = true;
+
+new Vue({
+	el : "#app", 
+  data: {
+  	title : "Hello World!",
+  	link : "https://google.com",
+  	x : 0,
+  	y : 0,
+  	count : 0,
+  },
+  methods: {
+  	changeTitle : function(event) {
+    this.title = event.target.value;
+    }, 
+    move: function(event) {
+        this.x = event.clientX;
+        this.y = event.clientY;
+    }, 
+    increse: function(step, event) {
+        this.count = this.count + step 
+    }, 
+    stop: function(event) {
+        event.stopProgation;
+    }, 
+    sayHello: function(event) {
+        this.title = "Hello";
+        return this.title;
+    } , 
+    alertMe: function(event) {
+        alert("Alert!!");
+    }
+
+
+  }
+});
+
+</script>
+
+
+<!-- 
+    v-once
+    v-bind:href="" 
+    v-on:input=""
+    v-on:mouseover=""
+    v-on:mousemove=""
+
+
+    methods: {
+
+        updateLocation(event) {
+
+        }
+
+        event.clientX
+        event.clientY
+
+        dummy:function(event) {
+            event.stopProgation();
+        }
+
+    }
+
+-->
+
+</body>
+</html>

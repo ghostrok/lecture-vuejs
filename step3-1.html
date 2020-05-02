@@ -1,0 +1,68 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <style>
+        .demo {
+            width: 180px;
+            height: 100px;
+            background-color: grey;
+            display: inline-block;
+            margin: 10px;
+    
+        }
+    
+        .green {
+            background-color : green
+        }
+        .red {
+            background-color : red
+        }
+        .blue {
+            background-color : blue
+        }
+        .grey {
+            background-color : grey
+        }
+    </style>    
+</head>
+
+<body>
+
+<!-- Begin of Line-->
+<div id="app">
+    <p v-if="show">You Can See Me </p>
+    <p v-else>How You See Me </p>
+    <teplate v-if="show">
+        <h1>Heading</h1>
+        <p>Inside a Template Area</p>
+    </teplate>
+    <p v-show="show">Do You Also See Me</p>
+    <button @click="show = !show">Switch</button>
+
+</div>
+
+<script>
+new Vue({
+    el : "#app", 
+
+    data: {
+        show : true,
+    }
+
+
+});
+
+</script>
+
+<!-- 
+    el : DOM
+    data : Store Data to be used 
+    methods : Methods of the Vue Instance
+    computed : dependent Properties ( cached properties)
+    watch : Execute code upon data changes 
+-->
+
+
+</body>
+</html>
