@@ -4,6 +4,7 @@
     <p>Many Details</p>
     <p>User Name : {{ switchName() }}</p>
     <p>User Age : {{ userAge }}</p>
+    <p>Age : {{ age }}</p>
     
     <!--
     <hr>
@@ -11,13 +12,16 @@
     -->
 
     <hr>
-    <button @click="resetName">reset Name</button>
-    <button @click="resetFunc">reset Name</button>
+    <button @click="resetName">reset Name(resetName(</button>
+    <button @click="resetFunc">reset Name(resetFunc)</button>
 
 </div>    
 </template>
 
 <script>
+
+import { eventBus } from './main';
+
 export default {
     //props: ['myName'], 
     props: {
@@ -28,15 +32,31 @@ export default {
         resetFunc : Function,
         userAge: Number,
     },
+    
+    data: function() {
+        return {
+            name : this.myName,
+            age : this.userAge,
+        }
+    },
+
     methods: {
         switchName: function() {
             //return this.myName = 'child changed Name';
             return this.myName.split("").reverse().join("");
         }, 
         resetName: function() {
-            this.myName = 'Max';
-            this.$emit('nameWasReset', this.myName);
-        }
+            this.name = 'Max';
+            this.$emit('nameWasReset', this.name);
+        }, 
+    }, 
+
+    // event Listener (beforeCreated, created, beforexxx, xxx)
+    created() { // ES6
+            eventBus.$on('ageWasEdited', (age) => {
+                this.age = age;
+                console.log('User Detail age Listener created')
+            });
     }
 }
 </script>
