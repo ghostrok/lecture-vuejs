@@ -86,7 +86,8 @@ _사랑_ 은 italic (언더파 _ )<br>
 
 
 
-lecture-001 test 2
+lecture-002 test 1
+
 
 
 
